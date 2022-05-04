@@ -1,0 +1,60 @@
+# Author:Monique Smith
+# Date Created: 29/3/2022
+# Course: ITT103
+# Purpose: To allow JamEx Limited sales workers to input needed information to calculate there commission rate
+
+def main():
+    while True:
+        try:
+            sales_person_num = int(input("Please enter ID number "))
+        except ValueError:
+            print("Incorrect input. Please enter correct ID number")
+            continue
+        else:
+            break
+    while True:
+        try:
+            sales_amount = float(input("Please enter sales amount "))
+        except ValueError:
+            print("Incorrect input. Please enter correct sales amount")
+            continue
+        else:
+            break
+    def get_number(prompt, err_msg, convert=int, min_val=None, max_val =None):
+        while True:
+            try:
+                val = convert(input(prompt))
+                if min_val != None and val < min_val: continue
+                if max_val != None and val > max_val: continue
+                return val
+            except ValueError:
+                print(err_msg)
+
+    c_lass = get_number("Please enter class 1 or 2 or 3)", "Incorrect input. Please enter correct class", min_val=1, max_val=3)
+# Class 1
+    if c_lass == 1:
+        if sales_amount <= 1000:
+              comm = float(sales_amount * 0.06)
+        elif sales_amount > 1000 and sales_amount < 2000:
+              comm = float(sales_amount * 0.07)
+        else:
+              comm = float(sales_amount * 0.1)
+# Class 2
+    if c_lass == 2:
+        if sales_amount < 1000:
+              comm = float(sales_amount * 0.04)
+        else:
+              comm = float(sales_amount * 0.06)
+# Class 3              
+    if c_lass == 3:
+              comm = float(sales_amount * 0.045)
+
+    print("Your commission is:", comm)
+    print("Process completed. Have a nice day !")
+
+    restart=input('Would you like to do another commission?').lower()
+    if restart == "yes":
+        main()
+    else: 
+      exit()
+main()
